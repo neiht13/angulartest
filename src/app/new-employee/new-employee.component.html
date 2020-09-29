@@ -1,0 +1,48 @@
+<div class="container">
+  <mat-icon class="back-icon" (click)="back()">arrow_back</mat-icon>
+
+  <h1 id="tableLabel" class="title">Create/Edit Employee</h1>
+
+  <br>
+  <mat-form-field appearance="outline">
+    <mat-label>Name</mat-label>
+    <input matInput [(ngModel)]="newEmployee.name" required
+           [matAutocomplete]="auto">
+    <mat-autocomplete #auto="matAutocomplete">
+      <mat-option *ngFor="let option of ['Thien', 'Xuan']" [value]="option">
+        {{option}}
+      </mat-option>
+    </mat-autocomplete>
+    <mat-hint>Enter your name</mat-hint>
+  </mat-form-field>
+  <br>
+  <mat-form-field appearance="fill">
+    <mat-label>Gender</mat-label>
+    <mat-select [(ngModel)]="newEmployee.gender">
+      <mat-option *ngFor="let gender of genders" [value]="gender.id">{{gender.name}}</mat-option>
+    </mat-select>
+    <mat-hint>Choose your gender</mat-hint>
+  </mat-form-field>
+  <br>
+  <mat-form-field appearance="fill">
+    <mat-label>Birthday</mat-label>
+    <input matInput [matDatepicker]="picker" [(ngModel)]="newEmployee.birthday">
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+    <mat-hint>Enter birthday or pick a date</mat-hint>
+  </mat-form-field>
+  <br>
+  <mat-form-field appearance="fill">
+    <mat-label>City</mat-label>
+    <mat-select [(ngModel)]="newEmployee.city">
+      <mat-option *ngFor="let city of cities" [value]="city.id">{{city.name}}</mat-option>
+    </mat-select>
+    <mat-hint>Choose your city</mat-hint>
+  </mat-form-field>
+  <div class="button-right">
+    <button mat-raised-button color="primary" (click)="handleSave()"
+            [disabled]="!newEmployee.name">
+      Save
+    </button>
+  </div>
+</div>
